@@ -4,8 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "env-cmd mocha tests/**/*.test.js",
-    "dev": "env-cmd nodemon index.js",
+    "dev": "concurrently \"npm:dev:server\" \"npm:dev:client\" ",
+    "dev:server": "npm run dev:client:build && env-cmd nodemon index.js",
+    "dev:server:only": "env-cmd nodemon index.js",
+    "dev:client": "cd client && npm start",
+    "dev:client:build": "cd client && npm run build",
+    "dev:client:test": "cd client && npm run test",
+    "dev:server:test": "env-cmd mocha tests/**/*.test.js",
     "dev:migrate:up": "env-cmd sequelize db:migrate --env development --config ./configs/sequelize.js",
     "dev:migrate:undo": "env-cmd sequelize  db:migrate:undo --env development --config ./configs/sequelize.js",
     "dev:migrate:destroy": "env-cmd sequelize  db:migrate:undo:all --env development --config ./configs/sequelize.js",
@@ -15,6 +20,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "mysql2": "^3.4.0",
     "pug": "^3.0.2",
@@ -22,6 +28,7 @@
   },
   "devDependencies": {
     "chai": "^4.3.7",
+    "concurrently": "^8.2.0",
     "env-cmd": "^10.1.0",
     "eslint": "^8.43.0",
     "eslint-formatter-codeframe": "^7.32.1",

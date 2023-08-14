@@ -21,11 +21,11 @@ const getCrematoryByIdController = async (request, response) => {
 }
 
 const addNewCrematoryController = async (request, response) => {
-  const { name, location, fieldMLIId } = request.body
+  const { name, location, fieldMLIId, logo } = request.body
 
-  if (!name || !location || !fieldMLIId) return response.status(400).send('All fields are required to add a crematory')
+  if (!name || !location || !fieldMLIId || !logo) return response.status(400).send('All fields are required to add a crematory')
 
-  const newCrematory = { name, location, fieldMLIId }
+  const newCrematory = { name, location, fieldMLIId, logo }
 
   const addedCrematory = await addNewCrematory(newCrematory)
 
