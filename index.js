@@ -1,5 +1,7 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
+const path = require('path')
 
 const {
   getAllCrematoriesController,
@@ -12,13 +14,9 @@ const {
   getFieldMLIBySearchTermWithCrematoriesController,
 } = require('./controllers/fieldMLIsControllers')
 
-app.set('view engine', 'pug')
+app.use(cors())
 
-app.use(express.static('public'))
-
-app.get('/', (request, response) => {
-  return response.render('documentation')
-})
+app.use(express.static('client/build'))
 
 app.get('/crematories', getAllCrematoriesController)
 
@@ -30,6 +28,10 @@ app.get('/fieldmlis/:searchTerm',
   getFieldMLIBySearchTermWithCrematoriesController)
 
 app.post('/crematories', express.json(), addNewCrematoryController)
+
+app.get("*", (request, response) => {
+  response.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+})
 
 app.listen(8080, () => {
   console.log('Listening on port http://localhost:8080')

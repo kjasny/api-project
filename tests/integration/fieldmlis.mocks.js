@@ -19,6 +19,7 @@ const singleFieldMLIWithIdMock = [
         name: 'Mt. Auburn Crematory',
         location: 'Cambridge',
         fieldMLIId: 1,
+        logo: '/Images/Mt Auburn Crematory.png',
         createdAt: '2023-07-04T12:04:00.000Z',
         updatedAt: '2023-07-04T12:04:00.000Z',
         deletedAt: null,
