@@ -1,0 +1,43 @@
+html 
+    body 
+        h1 Crematory API Documentation
+        p. 
+            This is a REST API used to display crematories in Massachusetts and the 
+            associated Field Medicolegal Investigators for the MA Medical Examiner's 
+            Office in charge of those crematories. 
+            The API includes GET requests to display all crematories with their 
+            associated Field MLIs, all Field MLIs with their associated crematories, a single crematory based on its ID with its Field MLI, and a single Field MLI based on their
+            ID or last name with their associated crematories. It also includes a POST request to add a new crematory.
+        ol  
+            li 
+                h3 GET request to display all crematories:
+                p app.get/crematories
+                h4 Example Display: 
+                img(src="/getAllCrematories.png" alt="Get all crematories example" height=350 width=450)
+                p ...all other crematories in the database with their Field MLIs
+            li 
+                h3 GET request to display a crematory based on its ID with its associated Field MLI:
+                p app.get/crematories/:id
+                h4 Example Display for app.get/crematories/3: 
+                img(src="/getCrematoryById.png" alt="Get crematory by ID example" height=350 width=450)
+            li 
+                h3 GET request to display all Field MLIs with their associated crematories:
+                p app.get/fieldmlis
+                h4 Example Display: 
+                img(src="/getAllFieldMlis.png" alt="Get all Field MLIs example" height=800 width=450)
+                p ...all other Field MLIs in the database with their crematories
+            li 
+                h3 GET request to display a Field MLI by their ID or last name (partial matches returned) with associated crematories:
+                p app.get/fieldmlis/searchterm
+                h4 Example Display for app.get/fieldmlis/jas: 
+                img(src="/getFieldMliBySearchTerm.png" alt="Get Field MLI by ID or last name example" height=700 width=450)
+            li 
+                h3 POST request to add a new crematory:
+                p app.post/crematories
+                h4 Example Display of body of request: 
+                img(src="/bodyOfPostRequest.png" alt="Add new crematory body example" height=150 width=300)
+                h4 Example Display of response: 
+                img(src="/postRequestResponse.png" alt="Response to adding new crematory" height=250 width=400)
+
+                
+        
